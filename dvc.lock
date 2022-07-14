@@ -1,0 +1,31 @@
+schema: '2.0'
+stages:
+  train_stage:
+    cmd: python main.py
+    deps:
+    - path: train
+      md5: 2f167b21d451444edbe6381d62810339.dir
+      size: 1035045819
+      nfiles: 3787
+    - path: val
+      md5: 087b350693de3b55bd3639d9f9ac543b.dir
+      size: 22515619
+      nfiles: 76
+    outs:
+    - path: MyModel.h5
+      md5: 59dad9bba19f0dd6136cce7c6a9a14d6
+      size: 430189880
+  test_stage:
+    cmd: python test.py
+    deps:
+    - path: MyModel.h5
+      md5: 59dad9bba19f0dd6136cce7c6a9a14d6
+      size: 430189880
+    - path: test
+      md5: 81aa88ffa713e385ffe0f1f585a70e4b.dir
+      size: 79054751
+      nfiles: 624
+    outs:
+    - path: eval.json
+      md5: 44bce8256798ef1d152b19710abd55f6
+      size: 20

@@ -1,0 +1,15 @@
+stages:
+  train_stage:
+    cmd: python main.py
+    deps:
+    - train
+    - val
+    outs:
+    - MyModel.h5
+  test_stage:
+    cmd: python test.py
+    deps:
+    - MyModel.h5
+    - test
+    outs:
+    - eval.json
