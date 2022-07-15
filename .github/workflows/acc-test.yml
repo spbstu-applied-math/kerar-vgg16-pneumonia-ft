@@ -1,0 +1,32 @@
+name: test accuracy
+
+on: [push, workflow_dispatch]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:  [3.9]
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r reqs.txt
+      
+      - name: Prepare dvc and pull data
+        run: |
+          dvc remote modify --local spbstu-applied-math-yandex access_key_id ${{ secrets.YANDEX_STORAGE_ACCESS_KEY_ID }}
+          dvc remote modify --local spbstu-applied-math-yandex secret_access_key ${{ secrets.YANDEX_STORAGE_ACCESS_KEY_SECRET }}
+          dvc pull --run-cache -q
+        
+      - name: Test model
+        run: |
+          dvc repro test_stage
