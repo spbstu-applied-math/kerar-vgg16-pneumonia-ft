@@ -1,5 +1,5 @@
 stages:
-  train_stage:
+  load_and_train_stage:
     cmd: python main.py
     deps:
     - train

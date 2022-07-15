@@ -1,5 +1,0 @@
-[core]
-    remote = spbstu-applied-math-yandex
-['remote "spbstu-applied-math-yandex"']
-    url = s3://202207dvc/projects/keras-vgg16-pneumonia-ft
-    endpointurl = https://storage.yandexcloud.net
