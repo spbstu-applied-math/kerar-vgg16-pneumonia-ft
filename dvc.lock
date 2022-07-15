@@ -1,6 +1,6 @@
 schema: '2.0'
 stages:
-  train_stage:
+  load_and_train_stage:
     cmd: python main.py
     deps:
     - path: train
@@ -13,13 +13,13 @@ stages:
       nfiles: 76
     outs:
     - path: MyModel.h5
-      md5: 59dad9bba19f0dd6136cce7c6a9a14d6
+      md5: 76900059543f704e7ab542e80c0ca1fb
       size: 430189880
   test_stage:
     cmd: python test.py
     deps:
     - path: MyModel.h5
-      md5: 59dad9bba19f0dd6136cce7c6a9a14d6
+      md5: 76900059543f704e7ab542e80c0ca1fb
       size: 430189880
     - path: test
       md5: 81aa88ffa713e385ffe0f1f585a70e4b.dir
@@ -27,5 +27,5 @@ stages:
       nfiles: 624
     outs:
     - path: eval.json
-      md5: 44bce8256798ef1d152b19710abd55f6
-      size: 20
+      md5: 237b127239bf5e4567df580dacdf546e
+      size: 32
